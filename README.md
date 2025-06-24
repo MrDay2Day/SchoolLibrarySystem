@@ -1,138 +1,214 @@
-# LibrarySystem
+# SchoolBookRentalSystem
 
-A comprehensive library management solution consisting of two integrated applications that share a single SQL Server database:
-
-1. A .NET Framework WinForms desktop application for staff and user operations
-2. A .NET Core MVC web application with Razor pages for online library services
+A comprehensive book rental management solution for Jamaica Elite High School built as a .NET Framework WinForms desktop application with SQL Server database integration.
 
 ## Project Overview
 
-This project demonstrates a complete library management system with distinct interfaces for different user roles while maintaining data consistency through a shared database. The solution showcases:
+This project provides a complete book rental management system specifically designed for Jamaica Elite High School's textbook rental program. The system enables efficient management of textbook inventory, student rentals, and administrative operations through a user-friendly desktop interface.
+
+The solution showcases:
 
 - Database-first approach using SQL Server
-- Entity Framework integration (.NET Framework & Entity Framework Core)
-- Multiple UI technologies (WinForms & Razor Pages)
-- Role-based access control
-- Authentication and authorization (including ASP.NET Identity integration)
-- Session management
-- Search and filtering capabilities
-- Book reservation and borrowing workflows
+- Entity Framework integration for data access
+- Windows Forms desktop application
+- Role-based access control for different user types
+- Student and staff authentication
+- Comprehensive rental tracking and management
 - Late fee calculation and payment processing
+- Inventory management for school textbooks
 
-## Applications
+## Application Features
 
-### Desktop Application (WinForms)
+### Student Authentication & Management
 
-The .NET Framework Windows Forms application provides a feature-rich desktop interface primarily designed for in-library use:
+The WinForms application provides secure access control with role-based functionality:
 
-#### Features
+#### Student Features
 
-- **User Authentication**: Secure login system with role-based access control
-- **Book Management**:
-  - Staff and admins can add/remove books from the library catalog
-  - All users can search the catalog with category filtering
-  - Book borrowing and return processing
-- **User Management** (Admin Only):
-  - Add/remove user accounts
-  - Update user information
-  - Block/unblock user accounts
-- **Borrowing History**: Users can view their currently borrowed books
-- **Late Fee Management**: Users can view and pay overdue fees
+- **Secure Login**: Student authentication using school credentials
+- **Book Catalog**: Browse and search available textbooks by subject, grade level, or title
+- **Rental Management**:
+  - View currently rented textbooks
+  - Check rental due dates
+  - Extend rental periods (when permitted)
+- **Rental History**: Complete history of all textbook rentals
+- **Fee Management**: View and pay outstanding late fees or damage charges
+- **Account Information**: Update personal contact details
 
-### Web Application (MVC with Razor Pages)
+#### Staff Features
 
-The .NET Core MVC application provides an online interface for library services:
+All student capabilities, plus:
 
-#### Features
+- **Book Inventory Management**:
+  - Add new textbooks to the rental catalog
+  - Update book information and availability
+  - Remove damaged or outdated books
+- **Rental Processing**:
+  - Process new textbook rentals for students
+  - Handle book returns and condition assessment
+  - Calculate and apply late fees or damage charges
+- **Student Account Management**:
+  - View student rental histories
+  - Process fee payments
+  - Generate rental reports
 
-- **User Authentication**: Integrated with ASP.NET Identity framework
-- **Book Catalog**: Browse and search all library books with filtering options
-- **Book Reservation**: Reserve books for in-person pickup
-- **Account Management**: Users can update their personal information
-- **Borrowing History**: View currently borrowed books and history
-- **Late Fee Management**: View and pay outstanding late fees
-
-## Technical Architecture
-
-### Database
-
-- SQL Server database (database-first approach)
-- Shared between both applications for consistent data
-
-### Desktop Application
-
-- .NET Framework
-- Entity Framework for data access
-- Windows Forms UI
-
-### Web Application
-
-- .NET Core
-- Entity Framework Core
-- MVC architecture with Razor pages
-- ASP.NET Identity for authentication and authorization
-- Session management for user state
-
-## User Roles
-
-The system supports three main user roles:
-
-### Regular Users
-
-- Browse and search books
-- Borrow and return books
-- Reserve books online
-- View personal borrowing history
-- Pay late fees
-- Update personal information
-
-### Staff
-
-All regular user capabilities, plus:
-
-- Add/remove books from the catalog
-- Process returns and borrowings
-
-### Administrators
+#### Administrator Features
 
 All staff capabilities, plus:
 
-- Add/remove user accounts
-- Block/unblock users
-- Modify user information and privileges
+- **User Management**:
+  - Add/remove student and staff accounts
+  - Update user roles and permissions
+  - Block/unblock accounts for policy violations
+- **System Administration**:
+  - Generate comprehensive reports on rental statistics
+  - Manage system settings and policies
+  - Oversee fee structures and rental periods
+- **Inventory Analytics**:
+  - Track book usage patterns
+  - Identify popular and underutilized textbooks
+  - Generate procurement recommendations
+
+## Technical Architecture
+
+### Database Design
+
+- **SQL Server Database**: Centralized data storage for all rental operations
+- **Database-First Approach**: Schema designed to match school rental workflows
+- **Key Entities**:
+  - Students and Staff (Users)
+  - Textbooks and Inventory
+  - Rentals and Transactions
+  - Fees and Payments
+
+### Desktop Application
+
+- **.NET Framework**: Robust Windows Forms application
+- **Entity Framework**: Object-relational mapping for database operations
+- **Layered Architecture**: Separation of concerns with data, business, and presentation layers
+- **Windows Forms UI**: Intuitive desktop interface optimized for school staff workflows
+
+## User Roles
+
+The system supports three primary user roles within Jamaica Elite High School:
+
+### Students
+
+- Browse available textbooks for their grade level and subjects
+- Rent textbooks for academic terms
+- Track current rentals and due dates
+- View rental history and academic records
+- Pay outstanding fees and charges
+- Update personal contact information
+
+### Staff (Teachers/Librarians)
+
+All student capabilities, plus:
+
+- Process textbook rentals and returns
+- Manage textbook inventory and catalog
+- Assess book conditions and apply damage fees
+- Generate student rental reports
+- Handle fee collection and payment processing
+
+### Administrators (Principal/Vice-Principal)
+
+All staff capabilities, plus:
+
+- Manage user accounts and permissions
+- Configure system settings and rental policies
+- Generate comprehensive administrative reports
+- Oversee financial aspects of the rental program
+- Monitor system usage and performance
+
+## School-Specific Features
 
 ## Development Approach
 
-- **Database-First Design**: Created the database schema first, then generated entity models
-- **Entity Framework Scaffolding**: Used for the .NET Core project to integrate with the existing database
-- **Identity Framework Integration**: Implemented in the .NET Core application for authentication
-- **Shared Database Access**: Both applications maintain data consistency through the same database
+- **Database-First Design**: Database schema designed to reflect school rental workflows
+- **Entity Framework Integration**: Code-first approach with database migrations
+- **Modular Architecture**: Clean separation between data access, business logic, and UI layers
+- **User-Centered Design**: Interface designed with feedback from Jamaica Elite High School staff
 
 ## Getting Started
 
 ### Prerequisites
 
 - Visual Studio 2022 or later
-- SQL Server 2019 or later
+- SQL Server 2019 or later (SQL Server Express acceptable)
 - .NET Framework 4.8
-- .NET Core 6.0 or later
+- Windows 10 or later
 
-### Setup
+### Installation & Setup
 
-1. Clone the repository
-2. Open the solution in Visual Studio
-3. Update the connection strings in both projects to point to your SQL Server instance
-4. Run the database migration scripts located in the `Database` folder
-5. Build and run the solution
+1. **Clone the Repository**
+
+   ```
+   git clone [repository-url]
+   cd SchoolBookRentalSystem
+   ```
+
+2. **Database Setup**
+
+   - Open SQL Server Management Studio
+   - Create a new database named `JamaicaEliteBookRentals`
+   - Run the database scripts in the `Database/Scripts` folder in order
+
+3. **Application Configuration**
+
+   - Open the solution in Visual Studio
+   - Update the connection string in `App.config` to point to your SQL Server instance
+   - Build the solution to restore NuGet packages
+
+4. **Initial Data Setup**
+
+   - Run the application as Administrator to create the initial admin account
+   - Import student data using the provided CSV import feature
+   - Add initial textbook inventory through the admin interface
+
+5. **Deployment**
+   - Build in Release mode
+   - Deploy to school computers or network shared location
+   - Ensure all users have appropriate database access permissions
+
+## System Requirements
+
+### Minimum Requirements
+
+- Windows 10 (64-bit)
+- .NET Framework 4.8
+- 4 GB RAM
+- 500 MB available disk space
+- SQL Server 2019 Express (or full version)
+- Network connectivity for shared database access
+
+### Recommended Requirements
+
+- Windows 11 (64-bit)
+- 8 GB RAM
+- 1 GB available disk space
+- SQL Server 2022
+- Dedicated database server for multi-user scenarios
 
 ## Future Enhancements
 
-- Email notifications for due dates and reservations
-- Integration with external book databases for catalog enrichment
-- Mobile application development
-- Advanced reporting features for library analytics
-- Online payment gateway integration
+- **Automated Notifications**: Email/SMS reminders for due dates and overdue books
+- **Barcode Integration**: Barcode scanning for quick book identification and processing
+- **Mobile Companion App**: Simple mobile app for students to check rental status
+- **Advanced Reporting**: Detailed analytics on rental patterns and inventory utilization
+- **Digital Integration**: Links to digital versions of textbooks where available
+- **Parent Portal**: Allow parents to view their child's rental status and pay fees
+- **Integration with School Management System**: Sync with existing student information systems
+
+## Support & Maintenance
+
+For technical support or feature requests, contact the Jamaica Elite High School IT Department or the development team.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is proprietary software developed specifically for Jamaica Elite High School. All rights reserved.
+
+---
+
+**Jamaica Elite High School**  
+_Excellence in Education_
