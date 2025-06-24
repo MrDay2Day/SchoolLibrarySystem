@@ -189,12 +189,12 @@
             // 
             // btn_login
             // 
-            this.btn_login.BackColor = System.Drawing.Color.ForestGreen;
+            this.btn_login.BackColor = System.Drawing.Color.DarkRed;
             this.btn_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_login.ForeColor = System.Drawing.SystemColors.Window;
-            this.btn_login.Location = new System.Drawing.Point(64, 115);
+            this.btn_login.Location = new System.Drawing.Point(64, 110);
             this.btn_login.Name = "btn_login";
-            this.btn_login.Size = new System.Drawing.Size(75, 23);
+            this.btn_login.Size = new System.Drawing.Size(75, 28);
             this.btn_login.TabIndex = 5;
             this.btn_login.Text = "Login";
             this.btn_login.UseVisualStyleBackColor = false;
@@ -203,7 +203,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 12);
+            this.label2.Location = new System.Drawing.Point(88, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 1;
@@ -223,7 +223,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 58);
+            this.label3.Location = new System.Drawing.Point(77, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 3;
