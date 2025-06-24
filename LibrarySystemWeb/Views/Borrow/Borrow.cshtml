@@ -1,0 +1,126 @@
+﻿@model BorrowPageModel
+@{
+    bool isAuthenticated = User.Identity != null && User.Identity.IsAuthenticated;
+    var firstName = User.FindFirst("FirstName")?.Value;
+
+    bool foundBook = Model.book != null;
+    Book book = null;
+
+    var model = Model;
+
+    Console.WriteLine("View Model Data:");
+    Console.WriteLine($"  book: {model.book}"); // Consider logging book properties if needed
+    Console.WriteLine($"  borrowed: {model.borrowed}");
+    Console.WriteLine($"  success: {model.success}");
+    Console.WriteLine($"  Books: {model.Books}"); // Consider logging book list if needed
+    Console.WriteLine($"  message: {model.message}");
+    Console.WriteLine($"  Days: {model.Days}");
+
+    if (foundBook) {
+        book = Model.book;
+    };
+
+    ViewData["Title"] = foundBook ? $"Reserve - {book.Title}" : "Book not found!";
+}
+
+<div style="display: flex; justify-content:center; padding: 10px;">
+    <button style="margin: 5px; width: 150px;" class="btn btn-primary borrow-btn" onclick="goBack()">Go Back</button>
+</div>
+
+@if (@Model.message != null)
+{
+    <h2 class="text-center">@Model.message</h2>
+    if (@Model.success == true)
+    {
+        <h4 style="text-align: center;">Please stop by and pick up your book!</h4>
+    }
+}
+else
+{
+
+    @if (Model.book != null)
+    {
+        <h1 style="text-align: center;">You want to reserve @Model.book.Title for pick up.</h1>
+        <h4 style="text-align: center;">@Model.book.Description</h4>
+        <hr />
+
+        <h2 class="text-center">Book Status: @(Model.book.Available ? "" : "NOT") <span style="color: @(Model.book.Available ? "green" : "red");">Available</span></h2>
+    }
+    else
+    {
+        <h1 style="text-align: center; width: 100%;">Book not found!</h1>
+        <hr />
+
+    }
+
+   
+    @if (foundBook && book.Available)
+    {
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <form asp-action="borrow" style="max-width: 300px; width: 100%;" method="post" asp-controller="borrow">
+                @if (Model.book != null)
+                {
+                    <input type="hidden" asp-for="book.BookId" />
+                    <input type="hidden" asp-for="book.Title" />
+                    <input type="hidden" asp-for="book.Author" />
+                    <input type="hidden" asp-for="book.Description" />
+                    <input type="hidden" asp-for="book.PublishedYear" />
+                    <input type="hidden" asp-for="book.Available" />
+
+                }
+
+                <input type="hidden" asp-for="borrowed" />
+                <input type="hidden" asp-for="success" />
+                <input type="hidden" asp-for="message" />
+
+                <input type="hidden" name="userId" value="@User.FindFirst("FirstName")?.Value" />
+
+
+                <div class="form-group">
+                    <label asp-for="Days" class="control-label text-center">Borrow Days</label>
+                    <input id="daysToBorrow" asp-for="Days" type="number" max="14" min="1" class="form-control" />
+                    <span asp-validation-for="Days" class="text-danger"></span>
+                </div>
+
+                @if (Model.Books != null)
+                {
+                    @foreach (var aBook in Model.Books)
+                    {
+                        <input type="hidden" name="Books[].BookId" value="@aBook.BookId" />
+                        <input type="hidden" name="Books[].Title" value="@aBook.Title" />
+                        <input type="hidden" name="Books[].Author" value="@aBook.Author" />
+                        <input type="hidden" name="Books[].Description" value="@aBook.Description" />
+                        <input type="hidden" name="Books[].PublishedYear" value="@book.PublishedYear" />
+                        <input type="hidden" name="Books[].Available" value="@aBook.Available" />
+                    }
+                }
+
+                <div class="form-group mt-3 d-flex justify-content-center">
+                    <input type="submit" value="Reserve Book" class="btn btn-success" style="width: 100%" />
+                </div>
+            </form>
+        </div>
+    }
+
+}
+    <hr />
+    @if (Model.Books != null)
+    {
+        <div class="text-center">
+            @await Component.InvokeAsync("BookList", new { count = 10 })
+        </div>
+    }
+
+
+
+
+
+
+
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+
+</script>

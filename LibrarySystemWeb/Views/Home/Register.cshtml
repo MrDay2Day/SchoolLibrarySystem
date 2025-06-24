@@ -1,0 +1,92 @@
+﻿@model LibrarySystemWeb.Models.RegisterUserModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1 style="text-align: center;">Register</h1>
+
+<h4 style="text-align: center;">User Registration Form.</h4>
+<hr />
+<div class="row">
+    @if(!string.IsNullOrEmpty(Model.Message)){
+
+        <h3 style="text-align: center;">@Model.Message</h3>
+
+    }
+  
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        @if (Model.Registered == false)
+        {
+            <form asp-action="Register" style="max-width: 300px; width: 100%;" method="post" asp-controller="Home">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FirstName" class="control-label">First Name</label>
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="control-label">Last Name</label>
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="form-control" type="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RetypePassword" class="control-label">Retype Password</label>
+                    <input asp-for="RetypePassword" class="form-control" type="password" />
+                    <span asp-validation-for="RetypePassword" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3 d-flex justify-content-center">
+                    <input type="submit" value="Create" class="btn btn-primary" style="width: 100%" />
+                </div>
+            </form>
+        }else{
+            <nav aria-label="Page navigation" style="max-width: 300px; width: 100%;">
+                <ul class="pagination " style="max-width: 300px; width: 100%;">
+                    <li class="page-item" style="max-width: 300px; width: 100%;">
+                        <a class="page-link" style="max-width: 300px; width: 100%; text-align: center; margin-top: 20px;" href="/home/login">Login</a>
+                    </li>
+
+                </ul>
+            </nav>
+        }
+
+        
+       
+
+        <nav aria-label="Page navigation" style="max-width: 300px; width: 100%;">
+            <ul class="pagination " style="max-width: 300px; width: 100%;">
+                <li class="page-item" style="max-width: 300px; width: 100%;">
+                    <a class="page-link" style="max-width: 300px; width: 100%; text-align: center; margin-top: 20px;" href="/">Back to Home</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div >
+    @* <a asp-action="Index">Back Home Page</a> *@
+
+
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

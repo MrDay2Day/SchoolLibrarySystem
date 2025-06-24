@@ -1,0 +1,943 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Library_SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoleClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" />
+          <Property Name="NormalizedName" Type="nvarchar" MaxLength="256" />
+          <Property Name="ConcurrencyStamp" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderDisplayName" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="450" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="450" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="NormalizedUserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="NormalizedEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="ConcurrencyStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEnd" Type="datetimeoffset" Precision="7" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserTokens">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="Book_id" />
+          </Key>
+          <Property Name="Book_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Author" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PublishedYear" Type="int" />
+          <Property Name="Available" Type="bit" Nullable="false" />
+          <Property Name="created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updated_at" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Borrows">
+          <Key>
+            <PropertyRef Name="Borrow_id" />
+          </Key>
+          <Property Name="Borrow_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_id" Type="int" Nullable="false" />
+          <Property Name="User_id" Type="int" Nullable="false" />
+          <Property Name="Borrow_date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Schedule_return_date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Actual_return_date" Type="datetime2" Precision="7" />
+          <Property Name="created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updated_at" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LateFeePayments">
+          <Key>
+            <PropertyRef Name="Payment_id" />
+          </Key>
+          <Property Name="Payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Borrow_id" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Paid" Type="bit" Nullable="false" />
+          <Property Name="created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updated_at" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Last_name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Blocked" Type="bit" Nullable="false" />
+          <Property Name="created_at" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updated_at" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Borrows__Book_id__797309D9">
+          <End Role="Books" Type="Self.Books" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Borrows" Type="Self.Borrows" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Book_id" />
+            </Principal>
+            <Dependent Role="Borrows">
+              <PropertyRef Name="Book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Borrows__User_id__787EE5A0">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Borrows" Type="Self.Borrows" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Borrows">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LateFeePa__Borro__7F2BE32F">
+          <End Role="Borrows" Type="Self.Borrows" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LateFeePayments" Type="Self.LateFeePayments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Borrows">
+              <PropertyRef Name="Borrow_id" />
+            </Principal>
+            <Dependent Role="LateFeePayments">
+              <PropertyRef Name="Borrow_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetRoleClaims_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetRoleClaims" Type="Self.AspNetRoleClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetRoleClaims">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserClaims_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserLogins_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserTokens_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserTokens" Type="Self.AspNetUserTokens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserTokens">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_BorrowBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="book_id" Type="int" Mode="In" />
+          <Parameter Name="user_id" Type="int" Mode="In" />
+          <Parameter Name="borrow_days" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_FetchBooks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="page_number" Type="int" Mode="In" />
+          <Parameter Name="is_available" Type="int" Mode="In" />
+          <Parameter Name="search_text" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_FetchBooks_Count_Only" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="is_available" Type="int" Mode="In" />
+          <Parameter Name="search_text" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_FetchBooks_Search_Only" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="page_number" Type="int" Mode="In" />
+          <Parameter Name="is_available" Type="int" Mode="In" />
+          <Parameter Name="page_size" Type="int" Mode="In" />
+          <Parameter Name="search_text" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_FetchBooks_Simple" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="is_available" Type="int" Mode="In" />
+          <Parameter Name="search_text" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ReturnBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="borrow_id" Type="int" Mode="In" />
+          <Parameter Name="daily_late_fee" Type="decimal" Mode="In" />
+        </Function>
+        <EntityContainer Name="Library_SystemModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoleClaims" EntityType="Self.AspNetRoleClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserTokens" EntityType="Self.AspNetUserTokens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Borrows" EntityType="Self.Borrows" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LateFeePayments" EntityType="Self.LateFeePayments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Borrows__Book_id__797309D9" Association="Self.FK__Borrows__Book_id__797309D9">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Borrows" EntitySet="Borrows" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Borrows__User_id__787EE5A0" Association="Self.FK__Borrows__User_id__787EE5A0">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Borrows" EntitySet="Borrows" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LateFeePa__Borro__7F2BE32F" Association="Self.FK__LateFeePa__Borro__7F2BE32F">
+            <End Role="Borrows" EntitySet="Borrows" />
+            <End Role="LateFeePayments" EntitySet="LateFeePayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetRoleClaims_AspNetRoles_RoleId" Association="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetRoleClaims" EntitySet="AspNetRoleClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserClaims_AspNetUsers_UserId" Association="Self.FK_AspNetUserClaims_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserLogins_AspNetUsers_UserId" Association="Self.FK_AspNetUserLogins_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetRoles_RoleId" Association="Self.FK_AspNetUserRoles_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetUsers_UserId" Association="Self.FK_AspNetUserRoles_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserTokens_AspNetUsers_UserId" Association="Self.FK_AspNetUserTokens_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserTokens" EntitySet="AspNetUserTokens" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Library_SystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Book_id" />
+          </Key>
+          <Property Name="Book_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Author" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PublishedYear" Type="Int32" />
+          <Property Name="Available" Type="Boolean" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Borrows" Relationship="Self.FK__Borrows__Book_id__59FA5E80" FromRole="Books" ToRole="Borrows" />
+        </EntityType>
+        <EntityType Name="Borrow">
+          <Key>
+            <PropertyRef Name="Borrow_id" />
+          </Key>
+          <Property Name="Borrow_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_id" Type="Int32" Nullable="false" />
+          <Property Name="User_id" Type="Int32" Nullable="false" />
+          <Property Name="Borrow_date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Schedule_return_date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Actual_return_date" Type="DateTime" Precision="7" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Book" Relationship="Self.FK__Borrows__Book_id__59FA5E80" FromRole="Borrows" ToRole="Books" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Borrows__User_id__59063A47" FromRole="Borrows" ToRole="Users" />
+          <NavigationProperty Name="LateFeePayments" Relationship="Self.FK__LateFeePa__Borro__5FB337D6" FromRole="Borrows" ToRole="LateFeePayments" />
+        </EntityType>
+        <EntityType Name="LateFeePayment">
+          <Key>
+            <PropertyRef Name="Payment_id" />
+          </Key>
+          <Property Name="Payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Borrow_id" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Paid" Type="Boolean" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Borrow" Relationship="Self.FK__LateFeePa__Borro__5FB337D6" FromRole="LateFeePayments" ToRole="Borrows" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_id" />
+          </Key>
+          <Property Name="User_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Last_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Blocked" Type="Boolean" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updated_at" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Borrows" Relationship="Self.FK__Borrows__User_id__59063A47" FromRole="Users" ToRole="Borrows" />
+        </EntityType>
+        <Association Name="FK__Borrows__Book_id__59FA5E80">
+          <End Role="Books" Type="Self.Book" Multiplicity="1" />
+          <End Role="Borrows" Type="Self.Borrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="Book_id" />
+            </Principal>
+            <Dependent Role="Borrows">
+              <PropertyRef Name="Book_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Borrows__User_id__59063A47">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Borrows" Type="Self.Borrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_id" />
+            </Principal>
+            <Dependent Role="Borrows">
+              <PropertyRef Name="User_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LateFeePa__Borro__5FB337D6">
+          <End Role="Borrows" Type="Self.Borrow" Multiplicity="1" />
+          <End Role="LateFeePayments" Type="Self.LateFeePayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Borrows">
+              <PropertyRef Name="Borrow_id" />
+            </Principal>
+            <Dependent Role="LateFeePayments">
+              <PropertyRef Name="Borrow_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Library_SystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="Borrows" EntityType="Self.Borrow" />
+          <EntitySet Name="LateFeePayments" EntityType="Self.LateFeePayment" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Borrows__Book_id__59FA5E80" Association="Self.FK__Borrows__Book_id__59FA5E80">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Borrows" EntitySet="Borrows" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Borrows__User_id__59063A47" Association="Self.FK__Borrows__User_id__59063A47">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Borrows" EntitySet="Borrows" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LateFeePa__Borro__5FB337D6" Association="Self.FK__LateFeePa__Borro__5FB337D6">
+            <End Role="Borrows" EntitySet="Borrows" />
+            <End Role="LateFeePayments" EntitySet="LateFeePayments" />
+          </AssociationSet>
+          <FunctionImport Name="sp_BorrowBook" ReturnType="Collection(Library_SystemModel.sp_BorrowBook_Result)">
+            <Parameter Name="book_id" Mode="In" Type="Int32" />
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+            <Parameter Name="borrow_days" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FetchBooks">
+            <Parameter Name="page_number" Mode="In" Type="Int32" />
+            <Parameter Name="is_available" Mode="In" Type="Int32" />
+            <Parameter Name="search_text" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ReturnBook" ReturnType="Collection(Library_SystemModel.sp_ReturnBook_Result)">
+            <Parameter Name="borrow_id" Mode="In" Type="Int32" />
+            <Parameter Name="daily_late_fee" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FetchBooks_Simple" ReturnType="Collection(Library_SystemModel.sp_FetchBooks_Simple_Result)">
+            <Parameter Name="is_available" Mode="In" Type="Int32" />
+            <Parameter Name="search_text" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FetchBooks_Count_Only">
+            <Parameter Name="is_available" Mode="In" Type="Int32" />
+            <Parameter Name="search_text" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_FetchBooks_Search_Only" ReturnType="Collection(Library_SystemModel.sp_FetchBooks_Search_Only_Result)">
+            <Parameter Name="page_number" Mode="In" Type="Int32" />
+            <Parameter Name="is_available" Mode="In" Type="Int32" />
+            <Parameter Name="page_size" Mode="In" Type="Int32" />
+            <Parameter Name="search_text" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="Library_SystemModel.C__EFMigrationsHistory" />
+          <EntitySet Name="AspNetRoleClaims" EntityType="Library_SystemModel.AspNetRoleClaim" />
+          <EntitySet Name="AspNetRoles" EntityType="Library_SystemModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Library_SystemModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Library_SystemModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Library_SystemModel.AspNetUser" />
+          <EntitySet Name="AspNetUserTokens" EntityType="Library_SystemModel.AspNetUserToken" />
+          <AssociationSet Name="FK_AspNetRoleClaims_AspNetRoles_RoleId" Association="Library_SystemModel.FK_AspNetRoleClaims_AspNetRoles_RoleId">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetRoleClaim" EntitySet="AspNetRoleClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserClaims_AspNetUsers_UserId" Association="Library_SystemModel.FK_AspNetUserClaims_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserLogins_AspNetUsers_UserId" Association="Library_SystemModel.FK_AspNetUserLogins_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserTokens_AspNetUsers_UserId" Association="Library_SystemModel.FK_AspNetUserTokens_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserToken" EntitySet="AspNetUserTokens" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Library_SystemModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="sp_BorrowBook_Result">
+          <Property Type="Int32" Name="Borrow_id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Borrower_Name" Nullable="false" MaxLength="501" />
+          <Property Type="DateTime" Name="Borrow_date" Nullable="false" />
+          <Property Type="DateTime" Name="Schedule_return_date" Nullable="false" />
+          <Property Type="String" Name="Author" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="sp_ReturnBook_Result">
+          <Property Type="Int32" Name="Book_id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Borrower_Name" Nullable="false" MaxLength="501" />
+          <Property Type="DateTime" Name="Borrow_date" Nullable="false" />
+          <Property Type="DateTime" Name="Schedule_return_date" Nullable="false" />
+          <Property Type="DateTime" Name="Actual_return_date" Nullable="true" />
+          <Property Type="Int32" Name="Days_Late" Nullable="true" />
+          <Property Type="Decimal" Name="Late_Fee_Amount" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="sp_FetchBooks_Simple_Result">
+          <Property Type="Int32" Name="Book_id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Author" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="PublishedYear" Nullable="true" />
+          <Property Type="Boolean" Name="Available" Nullable="false" />
+          <Property Type="Int32" Name="Borrow_id" Nullable="true" />
+          <Property Type="DateTime" Name="Borrow_date" Nullable="true" />
+          <Property Type="DateTime" Name="Schedule_return_date" Nullable="true" />
+          <Property Type="String" Name="Borrower_Name" Nullable="true" MaxLength="501" />
+          <Property Type="Int32" Name="TotalCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_FetchBooks_Search_Only_Result">
+          <Property Type="Int32" Name="Book_id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="Author" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="PublishedYear" Nullable="true" />
+          <Property Type="Boolean" Name="Available" Nullable="false" />
+          <Property Type="Int32" Name="Borrow_id" Nullable="true" />
+          <Property Type="DateTime" Name="Borrow_date" Nullable="true" />
+          <Property Type="DateTime" Name="Schedule_return_date" Nullable="true" />
+          <Property Type="String" Name="Borrower_Name" Nullable="true" MaxLength="501" />
+          <Property Type="Int32" Name="TotalCount" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRoleClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRole" Relationship="Library_SystemModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRoleClaim" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRoleClaims" Relationship="Library_SystemModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRole" ToRole="AspNetRoleClaim" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Library_SystemModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Library_SystemModel.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderDisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Library_SystemModel.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEnd" Type="DateTimeOffset" Precision="7" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Library_SystemModel.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Library_SystemModel.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetUserTokens" Relationship="Library_SystemModel.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserToken" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Library_SystemModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="AspNetUserToken">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Library_SystemModel.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUserToken" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_AspNetRoleClaims_AspNetRoles_RoleId">
+          <End Type="Library_SystemModel.AspNetRole" Role="AspNetRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Library_SystemModel.AspNetRoleClaim" Role="AspNetRoleClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetRoleClaim">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserClaims_AspNetUsers_UserId">
+          <End Type="Library_SystemModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Library_SystemModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserLogins_AspNetUsers_UserId">
+          <End Type="Library_SystemModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Library_SystemModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserTokens_AspNetUsers_UserId">
+          <End Type="Library_SystemModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Library_SystemModel.AspNetUserToken" Role="AspNetUserToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserToken">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="Library_SystemModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="Library_SystemModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Library_SystemModelStoreContainer" CdmEntityContainer="Library_SystemEntities">
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="Library_SystemModel.Book">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="PublishedYear" ColumnName="PublishedYear" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Borrows">
+            <EntityTypeMapping TypeName="Library_SystemModel.Borrow">
+              <MappingFragment StoreEntitySet="Borrows">
+                <ScalarProperty Name="Borrow_id" ColumnName="Borrow_id" />
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="Borrow_date" ColumnName="Borrow_date" />
+                <ScalarProperty Name="Schedule_return_date" ColumnName="Schedule_return_date" />
+                <ScalarProperty Name="Actual_return_date" ColumnName="Actual_return_date" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LateFeePayments">
+            <EntityTypeMapping TypeName="Library_SystemModel.LateFeePayment">
+              <MappingFragment StoreEntitySet="LateFeePayments">
+                <ScalarProperty Name="Payment_id" ColumnName="Payment_id" />
+                <ScalarProperty Name="Borrow_id" ColumnName="Borrow_id" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Library_SystemModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Blocked" ColumnName="Blocked" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_BorrowBook" FunctionName="Library_SystemModel.Store.sp_BorrowBook">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Library_SystemModel.sp_BorrowBook_Result">
+                <ScalarProperty Name="Borrow_id" ColumnName="Borrow_id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Borrower_Name" ColumnName="Borrower_Name" />
+                <ScalarProperty Name="Borrow_date" ColumnName="Borrow_date" />
+                <ScalarProperty Name="Schedule_return_date" ColumnName="Schedule_return_date" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_FetchBooks" FunctionName="Library_SystemModel.Store.sp_FetchBooks" />
+          <FunctionImportMapping FunctionImportName="sp_ReturnBook" FunctionName="Library_SystemModel.Store.sp_ReturnBook">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Library_SystemModel.sp_ReturnBook_Result">
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Borrower_Name" ColumnName="Borrower_Name" />
+                <ScalarProperty Name="Borrow_date" ColumnName="Borrow_date" />
+                <ScalarProperty Name="Schedule_return_date" ColumnName="Schedule_return_date" />
+                <ScalarProperty Name="Actual_return_date" ColumnName="Actual_return_date" />
+                <ScalarProperty Name="Days_Late" ColumnName="Days_Late" />
+                <ScalarProperty Name="Late_Fee_Amount" ColumnName="Late_Fee_Amount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_FetchBooks_Simple" FunctionName="Library_SystemModel.Store.sp_FetchBooks_Simple">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Library_SystemModel.sp_FetchBooks_Simple_Result">
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="PublishedYear" ColumnName="PublishedYear" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Borrow_id" ColumnName="Borrow_id" />
+                <ScalarProperty Name="Borrow_date" ColumnName="Borrow_date" />
+                <ScalarProperty Name="Schedule_return_date" ColumnName="Schedule_return_date" />
+                <ScalarProperty Name="Borrower_Name" ColumnName="Borrower_Name" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_FetchBooks_Count_Only" FunctionName="Library_SystemModel.Store.sp_FetchBooks_Count_Only" />
+          <FunctionImportMapping FunctionImportName="sp_FetchBooks_Search_Only" FunctionName="Library_SystemModel.Store.sp_FetchBooks_Search_Only">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Library_SystemModel.sp_FetchBooks_Search_Only_Result">
+                <ScalarProperty Name="Book_id" ColumnName="Book_id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="PublishedYear" ColumnName="PublishedYear" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Borrow_id" ColumnName="Borrow_id" />
+                <ScalarProperty Name="Borrow_date" ColumnName="Borrow_date" />
+                <ScalarProperty Name="Schedule_return_date" ColumnName="Schedule_return_date" />
+                <ScalarProperty Name="Borrower_Name" ColumnName="Borrower_Name" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="Library_SystemModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoleClaims">
+            <EntityTypeMapping TypeName="Library_SystemModel.AspNetRoleClaim">
+              <MappingFragment StoreEntitySet="AspNetRoleClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="Library_SystemModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+                <ScalarProperty Name="NormalizedName" ColumnName="NormalizedName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="Library_SystemModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="Library_SystemModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderDisplayName" ColumnName="ProviderDisplayName" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="Library_SystemModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEnd" ColumnName="LockoutEnd" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="NormalizedEmail" ColumnName="NormalizedEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NormalizedUserName" ColumnName="NormalizedUserName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserTokens">
+            <EntityTypeMapping TypeName="Library_SystemModel.AspNetUserToken">
+              <MappingFragment StoreEntitySet="AspNetUserTokens">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Library_SystemModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,35 @@
+﻿
+@{
+    int previousPage = Model.previousPage;
+    int nextPage = Model.nextPage;
+    int maxPage = Model.maxPage;
+    int currentPage = Model.currentPage;
+}
+
+
+<div class="pagination-container d-flex justify-content-center" style="margin-top: 40px;">
+    <nav>
+        <ul class="pagination">
+            <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                <a style="width: 100px;" class="page-link" href="?pageNum=1">
+                    First
+                </a>
+            </li>
+            <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                <a style="width: 100px;" class="page-link" href="?pageNum=@previousPage">
+                    Previous
+                </a>
+            </li>
+            <li class="page-item @(currentPage == maxPage ? "disabled" : "")">
+                <a style="width: 100px;" class="page-link" href="?pageNum=@nextPage">
+                    Next
+                </a>
+            </li>
+            <li class="page-item @(currentPage == maxPage ? "disabled" : "")">
+                <a style="width: 100px;" class="page-link" href="?pageNum=@maxPage">
+                    Last
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
